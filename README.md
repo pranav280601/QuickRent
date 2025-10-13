@@ -59,6 +59,3 @@ This project includes a **dynamic pricing engine**, **email notifications**, and
 
 ---
 
-
-  - **Peak hours multiplier** (1.5x between 6–9 AM, 5–8 PM).
-- Example formula:
