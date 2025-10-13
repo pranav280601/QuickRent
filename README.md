@@ -40,6 +40,7 @@ This project includes a **dynamic pricing engine**, **email notifications**, and
 ### 💰 **Dynamic Pricing Engine**
 - Calculates price based on:
   - **Distance (KM)** covered.
+  - **Peak hours multiplier** (1.5x between 6–9 AM, 5–8 PM).
 
 
 ### 📧 **Email Notifications**
