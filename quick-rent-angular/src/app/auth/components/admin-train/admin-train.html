@@ -1,0 +1,5 @@
+<div class="admin-train">
+    <h3>ML: Retrain Model</h3>
+    <button (click)="triggerTrain()" [disabled]="busy">{{ busy ? 'Running...' : 'Trigger Retrain' }}</button>
+    <div *ngIf="message" class="msg">{{ message }}</div>
+</div>

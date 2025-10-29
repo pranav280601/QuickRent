@@ -1,0 +1,25 @@
+<div class="recommendation-wrapper">
+    <h3>Recommended for you</h3>
+  
+    <div *ngIf="loading">Loading recommendations...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="!loading && recommendedCars.length === 0" class="no-recs">
+      No recommendations available yet.
+    </div>
+  
+    <div class="car-grid" *ngIf="recommendedCars.length > 0">
+      <div class="car-card" *ngFor="let car of recommendedCars">
+        <div class="car-image">
+          <img [src]="car.imageUrl || '/assets/default-car.png'" alt="{{ car.name || car.brand }}"/>
+        </div>
+        <div class="car-body">
+          <h4>{{ car.name || (car.brand + ' ' + (car.model || '')) }}</h4>
+          <p *ngIf="car.type">Type: {{ car.type }}</p>
+          <p *ngIf="car.pricePerDay">Price: ₹{{ car.pricePerDay }}</p>
+          <p *ngIf="car.seats">Seats: {{ car.seats }}</p>
+          <button class="btn" [routerLink]="['/cars', car.id]">View</button>
+        </div>
+      </div>
+    </div>
+  </div>

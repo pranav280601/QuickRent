@@ -1,0 +1,34 @@
+.recommendation-wrapper {
+    padding: 1rem;
+    h3 { margin-bottom: 0.75rem; }
+  
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+  
+    .car-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .car-image img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+  
+      .car-body { text-align: center; margin-top: 0.5rem; }
+  
+      .btn { margin-top: 0.5rem; }
+    }
+  
+    .no-recs { color: #666; }
+    .error { color: #c00; }
+  }

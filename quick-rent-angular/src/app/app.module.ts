@@ -9,10 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { NzMessageModule } from 'ng-zorro-antd/message'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { NgZorroImportsModule } from './NgZorroImportsModule'
+import { NgZorroImportsModule } from './NgZorroImportsModule';
+import { Recommendations } from './auth/components/recommendations/recommendations';
+import { AdminTrain } from './auth/components/admin-train/admin-train'
+
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, Recommendations, AdminTrain],
   imports: [
     BrowserModule,
     AppRoutingModule,
