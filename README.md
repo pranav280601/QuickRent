@@ -1,6 +1,6 @@
 # 🚗 Car Rental Application
 
-A full-stack car rental platform built using **Spring Boot**, **Angular**, and **MySQL**, featuring secure authentication, booking management, dynamic pricing, and AI-driven recommendations.
+A full-stack car rental platform built using **Spring Boot**, **Angular**, and **MySQL**, featuring secure authentication, booking management, dynamic pricing, and an AI-powered recommendation system.
 
 ---
 
@@ -22,9 +22,9 @@ A full-stack car rental platform built using **Spring Boot**, **Angular**, and *
 * **Car Management:** Admins can add, update, and delete cars.
 * **Booking Lifecycle:** Customers can browse, book, and manage rentals.
 * **Dynamic Pricing Engine:** Calculates total cost based on duration, distance, and peak hours.
-* **Email Notifications:** Confirmation emails sent post-booking.
+* **Email Notifications:** Sends booking confirmation emails.
 * **JWT-based Authentication:** Role-based access for customers and admins.
-* **Dockerized Deployment:** Full setup for multi-container environment (Spring Boot, MySQL, Angular, Python ML service).
+* **Dockerized Deployment:** Multi-container setup for backend, frontend, database, and ML service.
 
 ---
 
@@ -32,40 +32,26 @@ A full-stack car rental platform built using **Spring Boot**, **Angular**, and *
 
 ### Overview
 
-An **AI-powered car recommendation system** suggests cars to users based on:
+An **AI-driven recommendation system** provides personalized car suggestions based on:
 
-* Their past bookings
-* Similar users’ preferences
-* Popular car categories and rental patterns
+* Past bookings and user preferences
+* Similar users’ behavior
+* Car category popularity and rental frequency
 
-### Algorithm Used
+### Algorithm
 
-A **hybrid collaborative filtering model** combining:
+Uses a **hybrid collaborative filtering** approach combining:
 
-* **User-based similarity** (users who rented similar cars)
-* **Content-based filtering** (based on car type, price range, and fuel type)
-* Uses **cosine similarity** and **TF-IDF vectorization** under the hood.
+* **User-based similarity** (users with similar booking patterns)
+* **Content-based filtering** (car type, fuel, and price range)
+* Implements **cosine similarity** and **TF-IDF vectorization** with scikit-learn.
 
 ### Architecture
 
-1. **Data Fetching:**
-   The Flask ML service reads car and booking data directly from the existing MySQL (using Docker Compose network).
-
-2. **Model Training:**
-
-   * Runs periodically or on admin trigger (`/api/ml/retrain` endpoint).
-   * Generates similarity matrices and stores them as serialized `.pkl` models.
-
-3. **Integration with Backend (Spring Boot):**
-
-   * Spring Boot uses `WebClient` to call ML API (`/predict?userId=...`).
-   * The ML API returns a list of recommended car IDs and scores.
-   * Backend fetches full car details and sends to the Angular UI.
-
-4. **Frontend (Angular):**
-
-   * A new **Recommendations** component displays top suggestions to users.
-   * Optional **Admin** component to trigger retraining.
+1. **Data Source:** Reads data directly from the MySQL database in Docker.
+2. **Model Training:** Periodically or manually triggered via `/api/ml/retrain` endpoint.
+3. **Integration:** Spring Boot calls Flask service (`/predict?userId=...`) using `WebClient`.
+4. **Frontend Display:** Angular displays top car recommendations per user.
 
 ---
 
@@ -76,9 +62,9 @@ A **hybrid collaborative filtering model** combining:
 * **car-rental-backend** – Spring Boot app
 * **car-rental-db** – MySQL database
 * **car-rental-frontend** – Angular app
-* **ml-service** – Python Flask AI model
+* **ml-service** – Python Flask AI service
 
-### Example Docker Compose (excerpt)
+### Example Docker Compose
 
 ```yaml
 services:
@@ -114,10 +100,10 @@ services:
 
 ## 🧠 How It Works
 
-1. User logs in → Dashboard loads → Backend calls `/api/recommendations/{userId}`
-2. Backend forwards request to Python ML service via REST
-3. ML service processes user history and returns top 5 car IDs
-4. Backend fetches car details and sends JSON to frontend
+1. User logs in → dashboard loads → backend calls `/api/recommendations/{userId}`
+2. Backend forwards request to Python ML microservice
+3. ML service returns top car IDs and recommendation scores
+4. Backend retrieves car details and sends JSON to frontend
 5. Angular displays recommended cars dynamically
 
 ---
@@ -158,15 +144,11 @@ docker-compose up --build
 
 ---
 
-## 🧾 API Examples
+## 🧾 API Endpoints
 
 | Endpoint                        | Method | Description               |
 | ------------------------------- | ------ | ------------------------- |
 | `/api/cars`                     | GET    | List all cars             |
-| `/api/bookings`                 | POST   | Create booking            |
+| `/api/bookings`                 | POST   | Create a new booking      |
 | `/api/recommendations/{userId}` | GET    | Fetch car recommendations |
 | `/api/ml/retrain`               | POST   | Trigger model retraining  |
-
----
-**Shounoop** – Full-Stack Java Developer
-Built with ❤️ using Spring Boot, Angular & Machine Learning.
