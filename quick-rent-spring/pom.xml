@@ -50,6 +50,12 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- For WebClient support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
         <!-- jwt dependencies -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
